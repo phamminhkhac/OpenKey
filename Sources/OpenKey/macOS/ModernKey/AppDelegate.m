@@ -479,6 +479,7 @@ extern bool convertToolDontAlertWhenCompleted;
     if ([_mainWC.window isVisible]) {
         return;
     }
+    [NSApp activateIgnoringOtherApps:YES];
     [_mainWC.window makeKeyAndOrderFront:nil];
     [_mainWC.window setLevel:NSFloatingWindowLevel];
 }

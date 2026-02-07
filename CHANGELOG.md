@@ -2,6 +2,12 @@
 
 ##### OpenKey for Linux: (in development)
 
+##### Version 2.0.4: (07/02/2026)
+- Sửa lỗi macro không hoạt động với từ bắt đầu bằng "ư" khi gõ standalone "w" (ví dụ: macro "ưds" → "windows" không kích hoạt khi gõ "wds").
+- Thêm tính năng Force English khi mở Spotlight (Cmd+Space) - tự động chuyển sang chế độ tiếng Anh.
+- Sửa lỗi app treo khi click icon trên menu bar (do CFRunLoopRun block main thread).
+- Cải thiện giao diện: sửa layout tab buttons, dời nút "Kiểm tra bản mới" sang tab Thông tin.
+
 ##### Version 1.2 RC5: (26/08/2019)
 - Sửa lỗi không gõ được chữ "quởn".
 - Không kiểm tra chính tả khi sử dụng dấu "[ ] { }".

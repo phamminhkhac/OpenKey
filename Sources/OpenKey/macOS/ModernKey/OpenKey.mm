@@ -46,6 +46,7 @@ extern AppDelegate* appDelegate;
 extern int vSendKeyStepByStep;
 extern int vFixChromiumBrowser;
 extern int vPerformLayoutCompat;
+int vForceEnglishSpotlight = 1;
 
 extern "C" {
     //app which must sent special empty character
@@ -57,7 +58,10 @@ extern "C" {
     NSArray* _unicodeCompoundApp = @[@"com.apple.",
                                      @"com.google.Chrome", @"com.brave.Browser",
                                      @"com.microsoft.edgemac.Dev", @"com.microsoft.edgemac.Beta", @"com.microsoft.Edge.Dev", @"com.microsoft.Edge"];
-    
+
+    //app which should always use English mode (e.g. Spotlight has issues with Vietnamese input)
+    NSArray* _forceEnglishApps = @[@"com.apple.Spotlight"];
+
     CGEventSourceRef myEventSource = NULL;
     vKeyHookState* pData;
     CGEventRef eventBackSpaceDown;
@@ -112,6 +116,11 @@ extern "C" {
         LOAD_DATA(vFixChromiumBrowser, vFixChromiumBrowser);
         
         LOAD_DATA(vPerformLayoutCompat, vPerformLayoutCompat);
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"vForceEnglishSpotlight"]) {
+            LOAD_DATA(vForceEnglishSpotlight, vForceEnglishSpotlight);
+        } else {
+            vForceEnglishSpotlight = 1; // default ON
+        }
         
         myEventSource = CGEventSourceCreate(kCGEventSourceStatePrivate);
         pData = (vKeyHookState*)vKeyInit();
@@ -181,8 +190,27 @@ extern "C" {
         [prefs setObject:_data forKey:@"smartSwitchKey"];
     }
     
+    BOOL isForceEnglishApp(NSString* bundleId) {
+        if (bundleId == nil) return NO;
+        for (NSString* app in _forceEnglishApps) {
+            if ([bundleId isEqualToString:app]) {
+                return YES;
+            }
+        }
+        return NO;
+    }
+
     void OnActiveAppChanged() { //use for smart switch key; improved on Sep 28th, 2019
         queryFrontMostApp();
+
+        //force English for specific apps (e.g. Spotlight)
+        if (isForceEnglishApp(_frontMostApp) && vLanguage != 0) {
+            vLanguage = 0;
+            [appDelegate onImputMethodChanged:NO];
+            startNewSession();
+            return;
+        }
+
         _languageTemp = getAppInputMethodStatus(string(_frontMostApp.UTF8String), vLanguage | (vCodeTable << 1));
         if ((_languageTemp & 0x01) != vLanguage) { //for input method
             if (_languageTemp != -1) {
@@ -589,6 +617,17 @@ extern "C" {
            _keycode = ConvertEventToKeyboadLayoutCompatKeyCode(event, _keycode);
         }
         
+        //detect Spotlight hotkey (Cmd+Space) and force English
+        if (vForceEnglishSpotlight && type == kCGEventKeyDown && _keycode == 49 && (_flag & kCGEventFlagMaskCommand)) {
+            if (vLanguage != 0) {
+                vLanguage = 0;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [appDelegate onImputMethodChanged:NO];
+                });
+                startNewSession();
+            }
+        }
+
         //switch language shortcut; convert hotkey
         if (type == kCGEventKeyDown) {
             if (GET_SWITCH_KEY(vSwitchKeyStatus) != _keycode && GET_SWITCH_KEY(convertToolHotKey) != _keycode) {

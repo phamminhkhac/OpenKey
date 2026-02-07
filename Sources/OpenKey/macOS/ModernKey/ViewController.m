@@ -275,6 +275,10 @@ extern int vPerformLayoutCompat;
     vPerformLayoutCompat = (int)val;
 }
 
+- (IBAction)onForceEnglishSpotlight:(id)sender {
+    [self setCustomValue:sender keyToSet:@"vForceEnglishSpotlight"];
+}
+
 - (NSInteger)setCustomValue:(NSButton*)sender keyToSet:(NSString*) key {
     NSInteger val = 0;
     if (sender.state == NSControlStateValueOn) {
@@ -462,7 +466,13 @@ extern int vPerformLayoutCompat;
     
     value = [[NSUserDefaults standardUserDefaults] integerForKey:@"vPerformLayoutCompat"];
     self.PerformLayoutCompat.state = value ? NSControlStateValueOn : NSControlStateValueOff;
-    
+
+    value = [[NSUserDefaults standardUserDefaults] integerForKey:@"vForceEnglishSpotlight"];
+    if (value == 0 && ![[NSUserDefaults standardUserDefaults] objectForKey:@"vForceEnglishSpotlight"]) {
+        value = 1; // default ON
+    }
+    self.ForceEnglishSpotlight.state = value ? NSControlStateValueOn : NSControlStateValueOff;
+
     CustomSwitchControl.state = (vSwitchKeyStatus & 0x100) ? NSControlStateValueOn : NSControlStateValueOff;
     CustomSwitchOption.state = (vSwitchKeyStatus & 0x200) ? NSControlStateValueOn : NSControlStateValueOff;
     CustomSwitchCommand.state = (vSwitchKeyStatus & 0x400) ? NSControlStateValueOn : NSControlStateValueOff;
