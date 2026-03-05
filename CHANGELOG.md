@@ -2,6 +2,15 @@
 
 ##### OpenKey for Linux: (in development)
 
+##### Version 2.0.5: (05/03/2026)
+- Thêm tính năng "Tự khôi phục tiếng Anh bị lỗi Telex": tự động phát hiện và khôi phục từ tiếng Anh bị biến dạng do Telex (tool, screen, user, password, fix, zoom,...).
+  + Khôi phục ngay lập tức khi phát hiện tổ hợp nguyên âm không hợp lệ (ví dụ: ú+e → use).
+  + Khôi phục khi mark toggle-off dẫn đến spelling fail (ví dụ: pá+s → pass).
+  + Không chấp nhận f/z/w/j làm phụ âm đầu khi bật tính năng này.
+  + Hỗ trợ khôi phục tại Space, break key và trong lúc gõ.
+- Thêm tính năng "Bỏ qua W đầu từ": phím W đầu từ giữ nguyên là W, không chuyển thành Ư, tắt Vietnamese cho toàn bộ từ.
+- Đưa 2 checkbox mới vào tab "Bộ gõ".
+
 ##### Version 2.0.4: (07/02/2026)
 - Sửa lỗi macro không hoạt động với từ bắt đầu bằng "ư" khi gõ standalone "w" (ví dụ: macro "ưds" → "windows" không kích hoạt khi gõ "wds").
 - Thêm tính năng Force English khi mở Spotlight (Cmd+Space) - tự động chuyển sang chế độ tiếng Anh.
