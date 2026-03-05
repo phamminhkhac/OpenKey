@@ -1564,8 +1564,8 @@ void vKeyHandleEvent(const vKeyEvent& event,
             _stateIndex--;
 
             //auto restore English after mark toggle-off (e.g. pá+s → pass)
-            //skip for KEY_W: toggle w (ow→ơ→o) is undo, not duplicate (row, not roww)
-            if (vAutoRestoreEnglish && tempDisableKey && data != KEY_W) {
+            //only for mark keys (s/f/r/x/j), not vowel modifiers (e/o/a/w) to avoid row→roww, theme→themee
+            if (vAutoRestoreEnglish && tempDisableKey && IS_MARK_KEY(data)) {
                 _stateIndex++; //undo decrement to include current key
                 hCode = vWillProcess;
                 hBPC = _screenCharCount;
