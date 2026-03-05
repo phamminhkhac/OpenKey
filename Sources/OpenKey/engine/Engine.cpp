@@ -193,7 +193,7 @@ void checkSpelling(const bool& forceCheckVowel=false) {
                 for (j = 0; j < _consonantTable[i].size(); j++) {
                     if (_spellingEndIndex > j &&
                         (_consonantTable[i][j] & ~(vQuickStartConsonant ? END_CONSONANT_MASK : 0)) != CHR(j) &&
-                        (_consonantTable[i][j] & ~(vAllowConsonantZFWJ ? CONSONANT_ALLOW_MASK : 0)) != CHR(j)) {
+                        (_consonantTable[i][j] & ~((vAllowConsonantZFWJ && !vAutoRestoreEnglish) ? CONSONANT_ALLOW_MASK : 0)) != CHR(j)) {
                         _spellingFlag = true;
                         break;
                     }
@@ -228,8 +228,18 @@ void checkSpelling(const bool& forceCheckVowel=false) {
         }
         if (k > j) { //has vowel,
             _spellingVowelOK = false;
+            //check if any vowel has mark (sắc/huyền/hỏi/ngã/nặng) for early detection
+            bool _hasVowelMark = false;
+            if (vAutoRestoreEnglish && !forceCheckVowel) {
+                for (Byte _ti = VSI; _ti < k; _ti++) {
+                    if (TypingWord[_ti] & MARK_MASK) {
+                        _hasVowelMark = true;
+                        break;
+                    }
+                }
+            }
             //check correct combined vowel
-            if (k - j > 1 && forceCheckVowel) {
+            if (k - j > 1 && (forceCheckVowel || _hasVowelMark)) {
                 vector<vector<Uint32>>& vowelSet = _vowelCombine[CHR(j)];
                 for (l = 0; l < vowelSet.size(); l++) {
                     _spellingFlag = false;
@@ -358,7 +368,7 @@ void insertKey(const Uint16& keyCode, const bool& isCaps, const bool& isCheckSpe
         setKeyData(_index++, keyCode, isCaps);
     }
     
-    if (vCheckSpelling && isCheckSpelling)
+    if ((vCheckSpelling || vAutoRestoreEnglish) && isCheckSpelling)
         checkSpelling();
     
     //allow d after consonant
@@ -1184,10 +1194,14 @@ void handleMainKey(const Uint16& data, const bool& isCaps) {
     }
     
     if (!isChanged) {
-        if (data == KEY_W && vInputType != vSimpleTelex1) {
+        if (data == KEY_W && vInputType != vSimpleTelex1 && !vIgnoreStandaloneW) {
             checkForStandaloneChar(data, isCaps, KEY_U);
         } else {
             insertKey(data, isCaps);
+            //when word starts with W and IgnoreStandaloneW is on, disable Vietnamese for entire word
+            if (data == KEY_W && vIgnoreStandaloneW && _index == 1) {
+                tempDisableKey = true;
+            }
         }
     }
 }
@@ -1339,6 +1353,13 @@ void vKeyHandleEvent(const vKeyEvent& event,
             if (tempDisableKey && !checkRestoreIfWrongSpelling(vRestoreAndStartNewSession)) {
                 hCode = vDoNothing;
             }
+        } else if (vAutoRestoreEnglish && isWordBreak(event, state, data)) { //auto restore English with break-key
+            if (!tempDisableKey) {
+                checkSpelling(true);
+            }
+            if (tempDisableKey && !checkRestoreIfWrongSpelling(vRestoreAndStartNewSession)) {
+                hCode = vDoNothing;
+            }
         }
         
         _isCharKeyCode = state == KeyDown && std::find(_charKeyCode.begin(), _charKeyCode.end(), data) != _charKeyCode.end();
@@ -1382,7 +1403,7 @@ void vKeyHandleEvent(const vKeyEvent& event,
                 _upperCaseStatus = 0;
         }
     } else if (data == KEY_SPACE) {
-        if (!tempDisableKey && vCheckSpelling) {
+        if (!tempDisableKey && (vCheckSpelling || vAutoRestoreEnglish)) {
             checkSpelling(true); //force check spelling
         }
         if (vUseMacro && !_hasHandledMacro && findMacro(hMacroKey, hMacroData)) { //macro
@@ -1393,6 +1414,11 @@ void vKeyHandleEvent(const vKeyEvent& event,
         } else if ((vQuickStartConsonant || vQuickEndConsonant) && !tempDisableKey && checkQuickConsonant()) {
             _spaceCount++;
         } else if (vRestoreIfWrongSpelling && tempDisableKey && !_hasHandledMacro) { //restore key if wrong spelling
+            if (!checkRestoreIfWrongSpelling(vRestore)) {
+                hCode = vDoNothing;
+            }
+            _spaceCount++;
+        } else if (vAutoRestoreEnglish && tempDisableKey && !_hasHandledMacro) { //auto restore English word
             if (!checkRestoreIfWrongSpelling(vRestore)) {
                 hCode = vDoNothing;
             }
@@ -1482,7 +1508,9 @@ void vKeyHandleEvent(const vKeyEvent& event,
         }
 
         insertState(data, _isCaps); //save state
-        
+
+        Byte _screenCharCount = _index; //chars on screen before this key
+
         if (!IS_SPECIALKEY(data) || tempDisableKey) { //do nothing
             if (vQuickTelex && IS_QUICK_TELEX_KEY(data)) {
                 handleQuickTelex(data, _isCaps);
@@ -1501,6 +1529,28 @@ void vKeyHandleEvent(const vKeyEvent& event,
             handleMainKey(data, _isCaps);
         }
 
+        //auto restore English immediately when invalid vowel combination detected (e.g. ú+e → use)
+        if (vAutoRestoreEnglish && tempDisableKey && hCode == vDoNothing) {
+            bool _needsRestore = false;
+            for (ii = 0; ii < _index; ii++) {
+                if (!IS_CONSONANT(CHR(ii)) &&
+                    (TypingWord[ii] & MARK_MASK || TypingWord[ii] & TONE_MASK || TypingWord[ii] & TONEW_MASK)) {
+                    _needsRestore = true;
+                    break;
+                }
+            }
+            if (_needsRestore) {
+                hCode = vWillProcess;
+                hBPC = _screenCharCount;
+                hNCC = _stateIndex;
+                for (i = 0; i < _stateIndex; i++) {
+                    TypingWord[i] = KeyStates[i];
+                    hData[_stateIndex - 1 - i] = TypingWord[i];
+                }
+                _index = _stateIndex;
+            }
+        }
+
         if (!vFreeMark && !IS_KEY_D(data)) {
             if (hCode == vDoNothing) {
                 checkGrammar(-1);
@@ -1508,10 +1558,23 @@ void vKeyHandleEvent(const vKeyEvent& event,
                 checkGrammar(0);
             }
         }
-        
+
         if (hCode == vRestore) {
             insertKey(data, _isCaps);
             _stateIndex--;
+
+            //auto restore English after mark toggle-off (e.g. pá+s → pass)
+            if (vAutoRestoreEnglish && tempDisableKey) {
+                _stateIndex++; //undo decrement to include current key
+                hCode = vWillProcess;
+                hBPC = _screenCharCount;
+                hNCC = _stateIndex;
+                for (i = 0; i < _stateIndex; i++) {
+                    TypingWord[i] = KeyStates[i];
+                    hData[_stateIndex - 1 - i] = TypingWord[i];
+                }
+                _index = _stateIndex;
+            }
         }
         
         //insert or replace key for macro feature

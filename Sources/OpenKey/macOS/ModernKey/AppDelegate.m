@@ -47,6 +47,8 @@ int vQuickEndConsonant = 0;
 int vRememberCode = 1; //new on version 2.0
 int vOtherLanguage = 1; //new on version 2.0
 int vTempOffOpenKey = 0; //new on version 2.0
+int vAutoRestoreEnglish = 0;
+int vIgnoreStandaloneW = 0;
 
 int vShowIconOnDock = 0; //new on version 2.0
 

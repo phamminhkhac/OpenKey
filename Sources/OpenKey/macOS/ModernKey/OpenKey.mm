@@ -112,7 +112,9 @@ extern "C" {
         LOAD_DATA(vRememberCode, vRememberCode);
         LOAD_DATA(vOtherLanguage, vOtherLanguage);
         LOAD_DATA(vTempOffOpenKey, vTempOffOpenKey);
-        
+        LOAD_DATA(vAutoRestoreEnglish, vAutoRestoreEnglish);
+        LOAD_DATA(vIgnoreStandaloneW, vIgnoreStandaloneW);
+
         LOAD_DATA(vFixChromiumBrowser, vFixChromiumBrowser);
         
         LOAD_DATA(vPerformLayoutCompat, vPerformLayoutCompat);

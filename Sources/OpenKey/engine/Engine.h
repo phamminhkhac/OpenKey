@@ -188,6 +188,18 @@ extern int vOtherLanguage;
 extern int vTempOffOpenKey;
 
 /**
+ * 0: No; 1: Yes
+ * Auto restore English words corrupted by Telex rules.
+ */
+extern int vAutoRestoreEnglish;
+
+/**
+ * 0: No; 1: Yes
+ * Ignore standalone W key (don't convert to ư).
+ */
+extern int vIgnoreStandaloneW;
+
+/**
  * Call this function first to receive data pointer
  */
 void* vKeyInit();

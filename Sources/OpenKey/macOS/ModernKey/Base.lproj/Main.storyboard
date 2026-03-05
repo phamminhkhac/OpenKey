@@ -1156,14 +1156,14 @@
                                 </connections>
                             </button>
                             <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="GroupPrimary" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="HsQ-jf-eR7">
-                                <rect key="frame" x="20" y="768" width="520" height="220"/>
+                                <rect key="frame" x="20" y="728" width="520" height="260"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="j8p-0G-Uft">
-                                    <rect key="frame" x="1" y="1" width="518" height="218"/>
+                                    <rect key="frame" x="1" y="1" width="518" height="258"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button toolTip="Đặt dấu kiểu cũ và kiểu mới" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r8q-NU-lqe">
-                                            <rect key="frame" x="18" y="195" width="203" height="18"/>
+                                            <rect key="frame" x="18" y="235" width="203" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Đặt dấu oà, uý (thay vì òa, úy)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="8LZ-0W-aIg">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1174,7 +1174,7 @@
                                             </connections>
                                         </button>
                                         <button toolTip="Sửa lỗi đúp từ trên thanh địa chỉ trình duyệt, Excel,..." verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BKq-hz-RRL">
-                                            <rect key="frame" x="18" y="160" width="230" height="18"/>
+                                            <rect key="frame" x="18" y="200" width="230" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Sửa lỗi gợi ý (trình duyệt, Excel,...)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="dLp-Sb-Onb">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1185,7 +1185,7 @@
                                             </connections>
                                         </button>
                                         <button toolTip="Tính năng kiểm tra chính tả tương đối, hạn chế gõ sai từ" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ko-dG-wVl">
-                                            <rect key="frame" x="278" y="195" width="125" height="18"/>
+                                            <rect key="frame" x="278" y="235" width="125" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Kiểm tra chính tả" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="7Er-ll-Fkc">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1196,7 +1196,7 @@
                                             </connections>
                                         </button>
                                         <button toolTip="Từ nào gõ sai với Tiếng Việt thì tự động khôi phục các phím đã gõ" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HoJ-3t-uio">
-                                            <rect key="frame" x="278" y="160" width="193" height="18"/>
+                                            <rect key="frame" x="278" y="200" width="193" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Tự khôi phục phím với từ sai" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="989-bq-B4p">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1207,7 +1207,7 @@
                                             </connections>
                                         </button>
                                         <button toolTip="Vẫn cho phép gõ các chữ z w j f làm phụ âm đầu khi bật tính năng kiểm tra chính tả" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uOQ-qL-V9O">
-                                            <rect key="frame" x="278" y="125" width="216" height="18"/>
+                                            <rect key="frame" x="278" y="165" width="216" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Cho phép &quot;z w j f&quot; làm phụ âm" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="4sa-Bm-mTc">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1218,7 +1218,7 @@
                                             </connections>
                                         </button>
                                         <button toolTip="Tạm tắt kiểm tra chính tả khi gõ một từ nào đó như từ Đắk Lắk, Krông,... Kiểm tra chính tả sẽ phục hồi trở lại cho từ tiếp theo" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fld-P4-C8F">
-                                            <rect key="frame" x="278" y="90" width="219" height="18"/>
+                                            <rect key="frame" x="278" y="130" width="219" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Tạm tắt chính tả bằng phím ⌃" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="7Vf-II-Y50">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1229,7 +1229,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YGb-a8-1Lb">
-                                            <rect key="frame" x="18" y="90" width="198" height="18"/>
+                                            <rect key="frame" x="18" y="130" width="198" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <string key="toolTip">Bạn đang sử dụng Safari và dùng chế độ gõ Tiếng Việt, bạn chuyển qua Terminal và chuyển chế độ gõ qua Tiếng Anh, OpenKey sẽ tự ghi nhớ thao tác cho bạn, khi bạn chuyển về lại Safari, OpenKey sẽ tự chuyển sang chế độ Tiếng Việt, sau đó nếu lại quay lại Terminal, OpenKey cũng sẽ tự đổi qua chế độ Tiếng Anh</string>
                                             <buttonCell key="cell" type="check" title="Chuyển chế độ thông minh" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="OF9-V8-caS">
@@ -1241,7 +1241,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8zV-2v-Cyt">
-                                            <rect key="frame" x="18" y="55" width="242" height="18"/>
+                                            <rect key="frame" x="18" y="95" width="242" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <string key="toolTip">OpenKey sẽ tự động ghi nhớ bạn đã dùng bảng mã nào cho ứng dụng nào, để lần sau khi chuyển qua ứng dụng đó, OpenKey sẽ tự động chuyển sang bảng mã đó cho bạn. Rất thích hợp cho các ứng dụng kỹ thuật như Photoshop, CAD,...</string>
                                             <buttonCell key="cell" type="check" title="Tự ghi nhớ bảng mã theo ứng dụng" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Zic-gx-wRR">
@@ -1253,7 +1253,7 @@
                                             </connections>
                                         </button>
                                         <button toolTip="Bằng cách bấm phím Command, OpenKey sẽ tạm ngừng hoạt động cho tới khi bạn gõ 1 từ mới." verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1eA-ed-0Ov">
-                                            <rect key="frame" x="278" y="55" width="215" height="18"/>
+                                            <rect key="frame" x="278" y="95" width="215" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Tạm tắt OpenKey bằng phím ⌘" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="hx0-Hk-EOx">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1264,7 +1264,7 @@
                                             </connections>
                                         </button>
                                         <button toolTip="Tự động viết hoa sau dấu chấm ngắt câu và sau khi xuống dòng" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Adl-fG-XEu">
-                                            <rect key="frame" x="18" y="125" width="198" height="18"/>
+                                            <rect key="frame" x="18" y="165" width="198" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Viết Hoa chữ cái đầu câu" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="2Gh-Ll-jA8">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1275,7 +1275,7 @@
                                             </connections>
                                         </button>
                                         <button toolTip="OpenKey sẽ tự động tắt gõ tiếng Việt khi bộ gõ hệ thống không phải là tiếng Anh." verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ej5-aI-sDd">
-                                            <rect key="frame" x="18" y="23" width="317" height="18"/>
+                                            <rect key="frame" x="18" y="60" width="317" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Tắt tiếng Việt khi bộ gõ hệ thống khác tiếng Anh" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="uew-J8-1eo">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1284,6 +1284,30 @@
                                                     <action selector="onOtherLanguage:" target="XfG-lQ-9wD" id="ttX-Rc-ZfX"/>
                                                 </connections>
                                             </buttonCell>
+                                        </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AutoRestoreEnglish-btn">
+                                            <rect key="frame" x="18" y="25" width="250" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <string key="toolTip">Tự động khôi phục từ tiếng Anh bị biến dạng do Telex (tool, screen, windows...)</string>
+                                            <buttonCell key="cell" type="check" title="Tự khôi phục tiếng Anh bị lỗi Telex" bezelStyle="regularSquare" imagePosition="left" inset="2" id="AutoRestoreEnglish-cell">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="onAutoRestoreEnglish:" target="XfG-lQ-9wD" id="AutoRestoreEnglish-action"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IgnoreStandaloneW-btn">
+                                            <rect key="frame" x="278" y="25" width="230" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <string key="toolTip">Phím W đầu từ giữ nguyên là W, không chuyển thành Ư</string>
+                                            <buttonCell key="cell" type="check" title="Bỏ qua W đầu từ (không thành Ư)" bezelStyle="regularSquare" imagePosition="left" inset="2" id="IgnoreStandaloneW-cell">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="onIgnoreStandaloneW:" target="XfG-lQ-9wD" id="IgnoreStandaloneW-action"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </view>
@@ -1434,7 +1458,7 @@
                                 <color key="fillColor" name="alternatingContentBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
                             <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="GroupSystem" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="mf4-Da-qrL">
-                                <rect key="frame" x="20" y="345" width="520" height="210"/>
+                                <rect key="frame" x="20" y="315" width="520" height="210"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="3gJ-eF-R26">
                                     <rect key="frame" x="1" y="1" width="518" height="208"/>
@@ -1684,6 +1708,8 @@
                         <outlet property="AllowZWJF" destination="uOQ-qL-V9O" id="Jqs-5h-yVt"/>
                         <outlet property="AutoCapsMacro" destination="74U-4J-gv7" id="VfS-OM-Xg9"/>
                         <outlet property="AutoRememberSwitchKey" destination="YGb-a8-1Lb" id="uux-4i-1Hw"/>
+                        <outlet property="AutoRestoreEnglish" destination="AutoRestoreEnglish-btn" id="AutoRestoreEnglish-outlet"/>
+                        <outlet property="IgnoreStandaloneW" destination="IgnoreStandaloneW-btn" id="IgnoreStandaloneW-outlet"/>
                         <outlet property="CheckNewVersionButton" destination="ZuJ-Ke-7Qg" id="YR5-LD-gFA"/>
                         <outlet property="CheckNewVersionOnStartup" destination="oZr-h6-YZJ" id="kPW-tt-B1L"/>
                         <outlet property="CheckSpellingButton" destination="6Ko-dG-wVl" id="GZc-qh-LkA"/>

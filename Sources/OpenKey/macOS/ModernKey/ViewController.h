@@ -65,6 +65,8 @@
 @property (weak) IBOutlet NSButton *FixChromiumBrowser;
 @property (weak) IBOutlet NSButton *PerformLayoutCompat;
 @property (weak) IBOutlet NSButton *ForceEnglishSpotlight;
+@property (weak) IBOutlet NSButton *AutoRestoreEnglish;
+@property (weak) IBOutlet NSButton *IgnoreStandaloneW;
 
 @property (weak) IBOutlet NSButton *CheckNewVersionButton;
 @property (weak) IBOutlet NSTextField *VersionInfo;
